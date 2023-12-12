@@ -96,7 +96,6 @@ class FileHandler(FileSystemEventHandler):
         png_folder = 'C:/PNG/'
         file_name = csv_file.split(csv_folder, 1)[1]
         fname = file_name[:-4]
-        # print(f"{file_name} was just Created")
         #print((png_folder+fname+'.png'))
         plt.savefig(os.path.join(csv_folder,'\\','PNG', fname+'.png'))
         #plt.savefig(png_folder+fname+'.png')
