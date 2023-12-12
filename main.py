@@ -2,16 +2,14 @@ import time
 import pandas as pd
 import os
 import numpy as np
-import openpyxl
-from openpyxl import Workbook
+from fastapi import FastAPI
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-import io
 import matplotlib
 matplotlib.use('AGG')
 import matplotlib.pyplot as plt
-from fastapi import FastAPI, Response, BackgroundTasks
-
+# import openpyxl
+# from openpyxl import Workbook
 
 class FileHandler(FileSystemEventHandler):
     def __init__(self, csv_folder):
@@ -76,7 +74,7 @@ class FileHandler(FileSystemEventHandler):
         # ax2 (right Y axis)
         ax2.set_ylabel("Давление", color='tab:blue', fontsize=20)
         ax2.tick_params(axis='y', labelcolor='tab:blue')
-        if len(x)>12:
+        if len(x) > 12:
             ax2.set_xticks(np.arange(0, len(x), int(len(x) / 12)))
             ax2.set_xticklabels(x[::int(len(x) / 12)], rotation=0, fontdict={'fontsize': 10})
         else:
@@ -96,9 +94,9 @@ class FileHandler(FileSystemEventHandler):
         png_folder = 'C:/PNG/'
         file_name = csv_file.split(csv_folder, 1)[1]
         fname = file_name[:-4]
-        #print((png_folder+fname+'.png'))
-        plt.savefig(os.path.join(csv_folder,'\\','PNG', fname+'.png'))
-        #plt.savefig(png_folder+fname+'.png')
+        # print((png_folder+fname+'.png'))
+        plt.savefig(os.path.join(csv_folder, '\\', 'PNG', fname+'.png'))
+        # plt.savefig(png_folder+fname+'.png')
         plt.close()
 
 
